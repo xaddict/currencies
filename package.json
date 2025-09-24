@@ -1,0 +1,17 @@
+{
+	"name": "yen",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"@maverick-js/signals": "^6.0.0"
+	},
+	"devDependencies": {
+		"vite": "^7.1.7",
+		"vite-plugin-pwa": "^1.0.3"
+	}
+}
