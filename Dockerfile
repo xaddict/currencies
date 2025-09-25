@@ -27,6 +27,6 @@ COPY Caddyfile /usr/share/caddy/Caddyfile
 RUN ls /usr/share/caddy
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 80 443
 
 CMD ["caddy", "run", "--config", "/usr/share/caddy/Caddyfile", "--adapter", "caddyfile"]
