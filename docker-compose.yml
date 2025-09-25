@@ -6,7 +6,4 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-      - "443:433"
-      - "443:443/udp"
-    hostname: localhost
+      - "3000:433"
