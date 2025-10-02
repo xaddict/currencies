@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"> 
 	<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 	<div class="input-group big w-100 mbe-3">
 		<input type="text" id="inputElement" class="grow">
-		<label for="input" class="input-text" style="flex: 0 0 auto">¥</label>
+		<select name="currency" id="currencyElement">
+			<option value=""></option>
+		</select>
 	</div>
 	<div class="input-group big">
-		<output class="big-output w-100" id="outputElement">-</output>
+		<output class="big-output w-100" id="outputElement">-</output>	
 	</div>
 	<details class="settings">
 		<summary>Settings</summary>
-		Conversion ratio:
-		<div class="d-flex gap-1 w-100">
-			<div class="input-group">
-				<input type="number" id="yenElement" style="width: 10ch;">
-				<label for="yen" class="input-text" style="flex: 1 1 auto;">yen</label>
-			</div>
-			<span>=</span>
-			<div class="input-group">
-				<input type="number" step="0.01" lang="nl" id="euroElement" style="width: 10ch;">
-				<label for="euro" class="input-text">euro</label>
-			</div>
+		<div class="input-group">
+			<div class="input-text">Last updated:</div>
+			<output id="ratesDate"></output>
+			<button type="button" id="refetchButton"><span class="loading-indicator">loading</span> Refetch</button>
 		</div>
 	</details>
 	<script src="script.js" type="module"></script>

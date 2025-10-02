@@ -12,7 +12,7 @@ RUN corepack enable
 RUN corepack yarn install
 
 # Copy the rest of the application code
-COPY . .
+COPY index.html script.js style.css .
 
 # Build the Svelte app
 RUN corepack yarn run build

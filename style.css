@@ -4,7 +4,11 @@
     box-sizing: border-box;
 }
 
-:global(body) {
+html {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+body {
     margin: 0;
     padding: 1rem;
 }
@@ -30,6 +34,8 @@
 
     input,
     output,
+    select,
+    button,
     .input-text {
         &:first-child {
             border-radius: 0.5rem 0 0 0.5rem;
@@ -49,6 +55,8 @@
     }
 }
 
+select,
+button,
 input,
 output,
 .input-text {
@@ -92,4 +100,9 @@ input {
     summary {
         cursor: pointer;
     }
+}
+
+.loading-indicator { display: none; }
+body.loading .loading-indicator {
+    display: initial;
 }
