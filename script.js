@@ -75,12 +75,22 @@ inputElement.focus()
 async function fetchCurrencies() {
     loading.set(true)
 
-    const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json')
-    const json = await response.json()
+    const storageCurrenciesDate = localStorage.getItem('currencies-date')
+    const currentDate = new Date().toISOString().slice(0, 10)
+    const storageCurrencies = localStorage.getItem('currencies')
 
-    const currencyList = Object.entries(json).map(([key, value]) => ({ value: key, label: value }))
-    currencies.set(currencyList)
+    if (storageCurrencies === null || storageCurrenciesDate === null || storageCurrenciesDate < currentDate) {
+        const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json')
+        const json = await response.json()
 
+        const currencyList = Object.entries(json).map(([key, value]) => ({ value: key, label: value }))
+        currencies.set(currencyList)
+        localStorage.setItem('currencies', JSON.stringify(currencyList))
+        localStorage.setItem('currencies-date', currentDate)
+    } else {
+        currencies.set(JSON.parse(storageCurrencies))
+    }
+    
     currencyElement.innerHTML = ''
     currencies().forEach(option => {
         const currencyOption = document.createElement('option')
@@ -94,14 +104,14 @@ async function fetchCurrencies() {
     loading.set(false)
 }
 
-async function fetchConversionForEuro() {
+async function fetchConversionForEuro(force = false) {
     loading.set(true)
 
-    const storageDate = localStorage.getItem('conversions-date')
+    const storageConversionsDate = localStorage.getItem('conversions-date')
     const currentDate = new Date().toISOString().slice(0, 10)
     const storageConversions = localStorage.getItem('conversions')
 
-    if (storageDate === null || storageConversions === null || storageDate < currentDate) {
+    if (force || storageConversionsDate === null || storageConversions === null || storageConversionsDate < currentDate) {
         const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json')
         const json = await response.json()
 
@@ -123,5 +133,5 @@ fetchConversionForEuro()
 fetchCurrencies()
 
 refetchButton.addEventListener('click', () => {
-    fetchConversionForEuro()
+    fetchConversionForEuro(true)
 })
