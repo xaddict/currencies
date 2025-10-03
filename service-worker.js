@@ -4,7 +4,7 @@ const manifestFiles = self.__WB_MANIFEST || [];
 
 // Use the dynamically injected build version for the cache name.
 // This ensures a new cache is created on every new deployment.
-const CACHE_NAME = `yen-v${__BUILD_VERSION__}`;
+const CACHE_NAME = `convert-v${__BUILD_VERSION__}`;
 
 self.addEventListener('install', (event) => {
   console.log('Service Worker installing...');

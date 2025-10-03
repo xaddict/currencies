@@ -2,9 +2,10 @@ version: '3.8'
 
 services:
   app:
-    name: serve
+    name: convert
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:433"
+      - "3000:80"
+      - "3001:443"
