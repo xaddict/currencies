@@ -7,6 +7,11 @@ export default defineConfig(({ mode }) => {
 	const buildId = crypto.randomUUID();
 
 	return {
+		/ Crucial for Dokploy: Exposes the server to the container network
+        server: {
+            host: '0.0.0.0',
+            port: 3000,
+        },
 		plugins: [
 			VitePWA({
 				srcDir: '.',
