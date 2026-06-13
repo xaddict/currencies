@@ -5,3 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    expose:
+      - "80"
